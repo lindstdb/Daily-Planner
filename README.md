@@ -13,5 +13,5 @@
 
 ## Screenshot
 
-![screenshot](Assets/images/screenshot.PNG)
+![screenshot](Assets/images/Capture.PNG)
 
