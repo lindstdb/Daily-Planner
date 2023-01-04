@@ -10,6 +10,27 @@ function start() {
     var blockId = $(this).attr("id");
     $("#"+blockId+" textarea").text(localstorage.getItem(moment().format("DDDDYYYY")+blockId));
   });
+
+  $(".saveBtn").on("click",saveEvent);
+}
+
+function setTimeColor() {
+  $(".time-block").each(function() {
+    var hourSquare = parseInt($(this).attr("id").replace("hour-",""));
+    var currentSquare = parseInt(moment().format("H"));
+
+    $(this).removeClass("past present future");
+    if(hourSquare < currentSquare) {
+      $(this).addClass("past");
+    } else if (hourSquare > currentSquare) {
+      $(this).addClass("future");
+    } else {
+      $(this).addClass("present");
+    }
+  });
+}
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
