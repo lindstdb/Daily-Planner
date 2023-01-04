@@ -1,4 +1,18 @@
-$(start);
+
+$(document).ready(function(){
+  $(".saveBtn").on("click",function() {
+
+    var value = $(this).siblings(".description").val();
+    var time = $(this).parent().attr("id");
+
+    console.log('value:', value);
+    console.log('time:', time);
+
+    localStorage.setItem(time, value);
+  })
+});
+
+$(start)
 
 function start() {
   $("#currentDay").text(dayjs().format("dddd, MMMM Do"));
@@ -9,8 +23,6 @@ function start() {
     var blockId = $(this).attr("id");
     $("#" + blockId + " textarea").text(localStorage.getItem(dayjs().format("DDDDYYYY")+blockId));
   });
-
-  $(".saveBtn").on("click",saveEvent);
 }
 
 function setTimeColor() {
@@ -29,7 +41,12 @@ function setTimeColor() {
   });
 }
 
-function saveEvent(event) {
-  var hourId = $(this).parent().attr("id");
-  localstorage.setItem(moment().format("DDYYYY")+hourId, $("#"+hourId+"textarea").val());
-}
+setTimeColor();
+
+setInterval(function(){
+  setTimeColor();
+}, 15000);
+
+
+
+
